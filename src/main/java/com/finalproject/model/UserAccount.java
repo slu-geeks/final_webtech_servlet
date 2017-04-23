@@ -1,5 +1,11 @@
 package com.finalproject.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
@@ -8,19 +14,58 @@ import java.util.Date;
 public class UserAccount {
 
     private Integer accountId;
+
+    @NotNull(message = "username is compulsory!")
+    @NotBlank(message = "username is compulsory!")
+    @Pattern(regexp = "^[a-z0-9_-]{3,100}$",message = "your username can only be alphabet/numeric/hyphen/underscore!")
     private String username;
+
+    @NotNull(message = "password is compulsory!")
+    @NotBlank(message = "password is compulsory!")
     private String password;
+
+    @NotNull(message = "address is compulsory!")
+    @NotBlank(message = "address is compulsory!")
     private String address;
+
+    @NotNull(message = "first name is compulsory!")
+    @NotBlank(message = "first name is compulsory!")
+    @Pattern(regexp = "[a-z-A-Z]*", message = "First name has invalid characters")
     private String firstName;
+
+    @NotNull(message = "last name is compulsory!")
+    @NotBlank(message = "last name is compulsory!")
+    @Pattern(regexp = "[a-z-A-Z]*", message = "Last name has invalid characters")
     private String lastName;
+
+
     private String middleIntitial;
+
+    @NotNull(message = "status is compulsory!")
+    @NotBlank(message = "status is compulsory!")
     private short status;
+
+    @NotNull(message = "email address is compulsory!")
+    @NotBlank(message = "email address is compulsory!")
+    @Email(message = "Email Address is not a valid format")
     private String emailAddress;
+
+    @Past(message = "Date of Birth must be the past")
     private Date dateOfBirth;
+
+    @NotNull(message = "user role is compulsory!")
+    @NotBlank(message = "user role is compulsory!")
     private Integer roleId;
 
-    public UserAccount(Integer accountId, String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId) {
-        this.accountId = accountId;
+    @NotNull(message = "phone number is compulsory!")
+    @NotBlank(message = "phone number is compulsory!")
+    private String phoneNumber;
+
+    @NotNull(message = "user photo is compulsory!")
+    @NotBlank(message = "user photo is compulsory!")
+    private byte[] userPhoto;
+
+    public UserAccount(String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
         this.username = username;
         this.password = password;
         this.address = address;
@@ -31,6 +76,8 @@ public class UserAccount {
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
         this.roleId = roleId;
+        this.phoneNumber = phoneNumber;
+        this.userPhoto = userPhoto;
     }
 
     public Integer getAccountId() {
@@ -81,7 +128,7 @@ public class UserAccount {
         this.lastName = lastName;
     }
 
-    public String getMiddleIntitial() {
+    public String getMiddleName() {
         return middleIntitial;
     }
 
@@ -119,5 +166,21 @@ public class UserAccount {
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public byte[] getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(byte[] userPhoto) {
+        this.userPhoto = userPhoto;
     }
 }
