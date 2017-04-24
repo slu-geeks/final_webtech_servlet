@@ -1,6 +1,7 @@
 package com.finalproject;
 
 import com.finalproject.db.DatabaseConnectivity;
+import com.finalproject.db.UserAccountRepository;
 import com.finalproject.model.UserAccount;
 import com.finalproject.util.ValidatorUtil;
 import org.apache.commons.io.IOUtils;
@@ -15,8 +16,11 @@ import javax.servlet.http.Part;
 import javax.validation.ConstraintViolation;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -48,28 +52,39 @@ public class Signup extends HttpServlet {
         String age = req.getParameter("age");
         String phoneNumber = req.getParameter("phoneNumber");
         String dateOfBirth = req.getParameter("dateOfBirth");
+        //TODO PUT SOME VALIDATION
+        Date dayOfBirth = getDate(dateOfBirth);
         Part picturePart = req.getPart("personPicture");
-
         InputStream is = picturePart.getInputStream();
         byte[] bytes = IOUtils.toByteArray(is);
 
-        DatabaseConnectivity db = DatabaseConnectivity.getInstance();
+
         UserAccount userAccount = new UserAccount(
                 username, password, address, firstName, lastName, middleInitial,
-                (short) 1, emailAddress, new Date(1), 1, phoneNumber, bytes
+                (short) 1, emailAddress, dayOfBirth, 1, phoneNumber, bytes
         );
 
         ValidatorUtil validatorUtil = new ValidatorUtil<UserAccount>(UserAccount.class);
         Set<ConstraintViolation<UserAccount>> violation = validatorUtil.checkValidation(userAccount);
-        if(violation.size() != 0){
+        if (violation.size() != 0) {
             //tell user to fix his input
             return;
         }
 
-        boolean isInserted = db.addUser(userAccount);
+        boolean isInserted = UserAccountRepository.addUserAccount(userAccount);
 
 
     }
 
 
+    private Date getDate(String dateStr) {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date = null;
+        try {
+            date = format.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
 }
