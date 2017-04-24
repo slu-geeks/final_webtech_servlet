@@ -14,6 +14,7 @@
 </head>
 <body>
 
+
 <form method="post" action="request-service">
 <c:forEach items="${petServices}" var="service" varStatus="i">
     <p>Service${i.index + 1}: (${service.serviceDescription}) <input type="radio" value="serviceId1" name="requestService"/></p>

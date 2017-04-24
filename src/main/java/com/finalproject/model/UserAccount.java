@@ -2,6 +2,7 @@ package com.finalproject.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -41,8 +42,6 @@ public class UserAccount {
 
     private String middleIntitial;
 
-    @NotNull(message = "status is compulsory!")
-    @NotBlank(message = "status is compulsory!")
     private short status;
 
     @NotNull(message = "email address is compulsory!")
@@ -53,8 +52,6 @@ public class UserAccount {
     @Past(message = "Date of Birth must be the past")
     private Date dateOfBirth;
 
-    @NotNull(message = "user role is compulsory!")
-    @NotBlank(message = "user role is compulsory!")
     private Integer roleId;
 
     @NotNull(message = "phone number is compulsory!")
@@ -62,10 +59,25 @@ public class UserAccount {
     private String phoneNumber;
 
     @NotNull(message = "user photo is compulsory!")
-    @NotBlank(message = "user photo is compulsory!")
     private byte[] userPhoto;
 
     public UserAccount(String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
+        this.username = username;
+        this.password = password;
+        this.address = address;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleIntitial = middleIntitial;
+        this.status = status;
+        this.emailAddress = emailAddress;
+        this.dateOfBirth = dateOfBirth;
+        this.roleId = roleId;
+        this.phoneNumber = phoneNumber;
+        this.userPhoto = userPhoto;
+    }
+
+    public UserAccount(Integer accountId, String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
+        this.accountId = accountId;
         this.username = username;
         this.password = password;
         this.address = address;

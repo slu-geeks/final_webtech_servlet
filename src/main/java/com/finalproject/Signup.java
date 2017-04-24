@@ -4,8 +4,10 @@ import com.finalproject.db.DatabaseConnectivity;
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.model.UserAccount;
 import com.finalproject.util.ValidatorUtil;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import org.apache.commons.io.IOUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +18,11 @@ import javax.servlet.http.Part;
 import javax.validation.ConstraintViolation;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Mehdi Afsari Kashi
@@ -35,9 +36,12 @@ import java.util.Set;
 @MultipartConfig
 public class Signup extends HttpServlet {
 
+    private static final String SIGN_UP_PAGE = "signup.jsp";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        RequestDispatcher rd = req.getRequestDispatcher(SIGN_UP_PAGE);
+        rd.forward(req, resp);
     }
 
     @Override
@@ -68,16 +72,37 @@ public class Signup extends HttpServlet {
         Set<ConstraintViolation<UserAccount>> violation = validatorUtil.checkValidation(userAccount);
         if (violation.size() != 0) {
             //tell user to fix his input
+
+            List<String> errors = new ArrayList<String>();
+
+            for (ConstraintViolation<UserAccount> each : violation) {
+                errors.add(each.getMessage());
+            }
+            req.setAttribute("errors", errors);
+            RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
+            rd.forward(req, resp);
             return;
         }
 
-        boolean isInserted = UserAccountRepository.addUserAccount(userAccount);
+        boolean isInserted = false;
+
+        isInserted = UserAccountRepository.addUserAccount(userAccount);
+        if (!isInserted) {
+            req.setAttribute("errors", Arrays.asList("this username/email already exists"));
+            RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
+            rd.forward(req, resp);
+        }else{
+            resp.sendRedirect("login");
+        }
 
 
     }
 
 
     private Date getDate(String dateStr) {
+        if (dateStr == null || dateStr.isEmpty()) {
+            return null;
+        }
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = null;
         try {

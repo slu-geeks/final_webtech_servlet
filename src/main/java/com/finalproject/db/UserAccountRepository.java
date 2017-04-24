@@ -1,9 +1,10 @@
 package com.finalproject.db;
 
+import com.finalproject.exceptions.NoRoleException;
+import com.finalproject.exceptions.UserPasswordException;
 import com.finalproject.model.UserAccount;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import java.sql.*;
 
 /**
  * Created by mehdi on 4/24/17.
@@ -32,5 +33,52 @@ public class UserAccountRepository {
             return false;
         }
         return true;
+    }
+
+    public static UserAccount fetchUser(String username, String password) throws UserPasswordException, NoRoleException{
+        final String query = String.format("SELECT * FROM user_account where username='%s' AND password='%s';", username, password);
+        int accountId = -1, roleId = -1;
+        String address ="", firstName="", lastName="", middleName="", emailAddress="", phoneNumber="";
+        short status = -1;
+        Date birthday = null;
+        byte[] userPhoto = null;
+        Statement stm;
+        try {
+            stm = DatabaseConnectivity.getConnection().createStatement();
+            ResultSet result = stm.executeQuery(query);
+
+            if(!result.next()){
+                throw new UserPasswordException("The username/password is wrong.");
+            }
+
+
+            while (result.next()) {
+                accountId = result.getInt("account_id");
+                address = result.getString("address");
+                firstName = result.getString("first_name");
+                lastName = result.getString("last_name");
+                middleName = result.getString("middle_name");
+                status = result.getShort("status");
+                emailAddress = result.getString("email_address");
+                birthday = result.getDate("birthday");
+                phoneNumber = result.getString("phone_number");
+                roleId = result.getInt("role_id");
+                userPhoto = result.getBytes("user_picture");
+
+            }
+
+            if(roleId != 1){
+                throw new NoRoleException("only customer are allowed to login using this module.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return new UserAccount(
+                accountId, username, password,
+                address, firstName, lastName,middleName, status, emailAddress,
+                birthday, roleId, phoneNumber, userPhoto);
     }
 }
