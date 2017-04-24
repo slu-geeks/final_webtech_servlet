@@ -99,32 +99,85 @@ public class DummyDataListener implements ServletContextListener {
     }
 
     private void addSomeDummyCustomers() {
-        for(int i = 0; i< 10; i++){
+        for (int i = 0; i < 10; i++) {
             UserAccountRepository.addUserAccount(new UserAccount(
-                    randomStr(),randomStr(),randomStr(),randomStr(),randomStr(),randomStr(),(short)1,randomStr(),
-                    new Date(), 1, "090623545"+randomInt(10, 99), null
+                    randomStr(), randomStr(), randomStr(), randomStr(), randomStr(), randomStr(), (short) 1, randomStr(),
+                    new Date(), 1, "090623545" + randomInt(10, 99), null
             ));
         }
     }
 
     private void addSomeDummyPetService() {
 
+        for (int i = 0; i < 10; i++) {
+            String sql = "INSERT INTO pet_service (service_name, service_description, service_price, service_duration_from, service_duration_to, service_picture) VALUES (?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
+                pstmt.setString(1, randomStr());
+                pstmt.setString(2, randomStr());
+                pstmt.setInt(3, randomInt(100, 500));
+                pstmt.setDate(4, new java.sql.Date(getDateNdaysBefore(randomInt(5, 10)).getTime()));
+                pstmt.setDate(5, new java.sql.Date(new Date().getTime()));
+                pstmt.setString(6, null);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void addSomeDummyFeedbacks() {
-
+        for (int i = 0; i < 10; i++) {
+            String sql = "INSERT INTO feedback (ranking, contacting_phone_number, feedback_messages, account_id, feedback_date, consideration_date, " +
+                    "feedback_status, checked_description, checker_account_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
+                pstmt.setInt(1, randomInt(1,10));
+                pstmt.setString(2, "090626522" + randomInt(10, 99));
+                pstmt.setString(3, randomStr());
+                pstmt.setInt(4, randomInt(1,10));
+                pstmt.setDate(5, new java.sql.Date(getDateNdaysBefore(randomInt(10, 25)).getTime()));
+                pstmt.setDate(6, null);
+                pstmt.setInt(7, (short)1);
+                pstmt.setString(8, null);
+                pstmt.setNull(9, java.sql.Types.INTEGER);
+                pstmt.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void addSomeDummyServiceRequest() {
-
+        for (int i = 0; i < 10; i++) {
+            String sql = "INSERT INTO service_request (request_name, start_servicing, end_servicing, request_status, service_id, account_id) VALUES (?, ?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
+                pstmt.setString(1, randomStr());
+                pstmt.setDate(2, new java.sql.Date(getDateNdaysBefore(randomInt(10, 25)).getTime()));
+                pstmt.setDate(3, new java.sql.Date(getDateNdaysBefore(randomInt(2, 9)).getTime()));
+                pstmt.setInt(4, 1);
+                pstmt.setInt(5, randomInt(1, 10));
+                pstmt.setInt(6, randomInt(1, 10));
+                pstmt.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-    private String randomStr(){
-        return UUID.randomUUID().toString().substring(0,5);
+    private String randomStr() {
+        return UUID.randomUUID().toString().substring(0, 5);
     }
 
-    private int randomInt(int min, int max){
+    private int randomInt(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
+    private Date getDateNdaysBefore(int nDayBefore) {
+        long DAY_IN_MS = 1000 * 60 * 60 * 24;
+        return new Date(System.currentTimeMillis() - (nDayBefore * DAY_IN_MS));
     }
 
 }
