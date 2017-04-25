@@ -36,7 +36,7 @@ public class UserAccountRepository {
     }
 
     public static UserAccount fetchUser(String username, String password) throws UserPasswordException, NoRoleException{
-        final String query = String.format("SELECT * FROM user_account where username='%s' AND password='%s';", username, password);
+        final String query = String.format("SELECT * FROM user_account where username=  '%s' AND password='%s';", username, password);
         int accountId = -1, roleId = -1;
         String address ="", firstName="", lastName="", middleName="", emailAddress="", phoneNumber="";
         short status = -1;
@@ -47,7 +47,7 @@ public class UserAccountRepository {
             stm = DatabaseConnectivity.getConnection().createStatement();
             ResultSet result = stm.executeQuery(query);
 
-            if(!result.next()){
+            if(!result.isBeforeFirst()){
                 throw new UserPasswordException("The username/password is wrong.");
             }
 
@@ -67,7 +67,7 @@ public class UserAccountRepository {
 
             }
 
-            if(roleId != 1){
+            if(roleId != 1 && roleId != -1){
                 throw new NoRoleException("only customer are allowed to login using this module.");
             }
 

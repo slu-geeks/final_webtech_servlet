@@ -1,5 +1,7 @@
 package com.finalproject.model;
 
+import java.util.Date;
+
 /**
  * Created by mehdi on 4/24/17.
  */
@@ -8,13 +10,27 @@ public class PetService {
     private String serviceName;
     private String serviceDescription;
     private Integer servicePrice;
-    private Integer servicingDuration;
+    private Date servicingDurationFrom;
+    private Date serviceDurationTo;
+    private byte[] servicePicture;
 
-    public PetService(String serviceName, String serviceDescription, Integer servicePrice, Integer servicingDuration) {
+    public PetService(Integer serviceId, String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture) {
+        this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
         this.servicePrice = servicePrice;
-        this.servicingDuration = servicingDuration;
+        this.servicingDurationFrom = servicingDurationFrom;
+        this.serviceDurationTo = serviceDurationTo;
+        this.servicePicture = servicePicture;
+    }
+
+    public PetService(String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture) {
+        this.serviceName = serviceName;
+        this.serviceDescription = serviceDescription;
+        this.servicePrice = servicePrice;
+        this.servicingDurationFrom = servicingDurationFrom;
+        this.serviceDurationTo = serviceDurationTo;
+        this.servicePicture = servicePicture;
     }
 
     public Integer getServiceId() {
@@ -49,11 +65,27 @@ public class PetService {
         this.servicePrice = servicePrice;
     }
 
-    public Integer getServicingDuration() {
-        return servicingDuration;
+    public Date getServicingDurationFrom() {
+        return servicingDurationFrom;
     }
 
-    public void setServicingDuration(Integer servicingDuration) {
-        this.servicingDuration = servicingDuration;
+    public void setServicingDurationFrom(Date servicingDurationFrom) {
+        this.servicingDurationFrom = servicingDurationFrom;
+    }
+
+    public Date getServiceDurationTo() {
+        return serviceDurationTo;
+    }
+
+    public void setServiceDurationTo(Date serviceDurationTo) {
+        this.serviceDurationTo = serviceDurationTo;
+    }
+
+    public byte[] getServicePicture() {
+        return servicePicture;
+    }
+
+    public void setServicePicture(byte[] servicePicture) {
+        this.servicePicture = servicePicture;
     }
 }

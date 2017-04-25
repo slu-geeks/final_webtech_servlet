@@ -1,7 +1,9 @@
 package com.finalproject;
 
 import com.finalproject.db.PetServiceRepository;
+import com.finalproject.db.ServiceRequestRepository;
 import com.finalproject.model.PetService;
+import com.finalproject.model.UserAccount;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +31,15 @@ public class RequestService extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String requestId = req.getParameter("requestService");
-        System.out.println("item requested id: " + requestId);
+        Integer serviceId = Integer.parseInt(req.getParameter("requestService"));
+        UserAccount user = (UserAccount) req.getSession().getAttribute("activeUser");
+
+        boolean isRequestedRegisered = ServiceRequestRepository.insertRequest(serviceId, user.getAccountId());
+        req.setAttribute("isRequestRegistered", isRequestedRegisered);
+
+        RequestDispatcher rd = req.getRequestDispatcher("services.jsp");
+        rd.forward(req, resp);
+
+
     }
 }

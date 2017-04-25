@@ -3,6 +3,7 @@ package com.finalproject;
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.exceptions.NoRoleException;
 import com.finalproject.exceptions.UserPasswordException;
+import com.finalproject.model.UserAccount;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,15 +51,21 @@ public class Login extends HttpServlet {
             return;
         }
 
-
+        UserAccount user = null;
         try {
-            UserAccountRepository.fetchUser(username, password);
+            user = UserAccountRepository.fetchUser(username, password);
         } catch (UserPasswordException e) {
             doDispatch(Arrays.asList(e.getMessage()), req, resp);
         } catch (NoRoleException e) {
             doDispatch(Arrays.asList(e.getMessage()), req, resp);
         }
 
+        if(user == null){
+            doDispatch(Arrays.asList("the account you are requesting does not exist"), req, resp);
+            return;
+        }
+
+        req.getSession().setAttribute("activeUser",user);
         resp.sendRedirect("dashboard");
     }
 

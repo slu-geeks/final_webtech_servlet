@@ -151,15 +151,15 @@ public class DummyDataListener implements ServletContextListener {
 
     private void addSomeDummyServiceRequest() {
         for (int i = 0; i < 10; i++) {
-            String sql = "INSERT INTO service_request (request_name, start_servicing, end_servicing, request_status, service_id, account_id) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO service_request (start_servicing, end_servicing, request_status, service_id, account_id) VALUES (?, ?, ?, ?, ?)";
             try {
                 PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
-                pstmt.setString(1, randomStr());
-                pstmt.setDate(2, new java.sql.Date(getDateNdaysBefore(randomInt(10, 25)).getTime()));
-                pstmt.setDate(3, new java.sql.Date(getDateNdaysBefore(randomInt(2, 9)).getTime()));
-                pstmt.setInt(4, 1);
+
+                pstmt.setDate(1, new java.sql.Date(getDateNdaysBefore(randomInt(10, 25)).getTime()));
+                pstmt.setDate(2, new java.sql.Date(getDateNdaysBefore(randomInt(2, 9)).getTime()));
+                pstmt.setInt(3, 1);
+                pstmt.setInt(4, randomInt(1, 10));
                 pstmt.setInt(5, randomInt(1, 10));
-                pstmt.setInt(6, randomInt(1, 10));
                 pstmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
