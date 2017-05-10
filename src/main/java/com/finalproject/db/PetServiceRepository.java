@@ -21,7 +21,7 @@ public class PetServiceRepository {
     public static List<PetService> fetchPetServiceList() {
         final String query = "SELECT * FROM pet_service ORDER BY  service_name;";
         String serviceName, serviceDescription;
-        int petServiceId, servicePrice;
+        int petServiceId, servicePrice, spId;
         byte[] servicePicture;
         Statement stm;
         List<PetService> allServices = new ArrayList<>();
@@ -38,9 +38,10 @@ public class PetServiceRepository {
                 serviceName = result.getString("service_name");
                 serviceDescription = result.getString("service_description");
                 servicePrice = result.getInt("service_price");
+                spId = result.getInt("sp_id");
 
                 allServices.add(new PetService(petServiceId,
-                        serviceName, serviceDescription, servicePrice, null, null, servicePicture
+                        serviceName, serviceDescription, servicePrice, null, null, servicePicture, spId
                 ));
             }
         } catch (Exception e) {

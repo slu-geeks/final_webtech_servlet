@@ -20,7 +20,7 @@ public class DummyDataListener implements ServletContextListener {
     Connection connection = DatabaseConnectivity.getConnection();
 
     public void contextInitialized(ServletContextEvent sce) {
-        trancateAllTables();
+        //trancateAllTables();
         addData();
     }
 
@@ -65,7 +65,7 @@ public class DummyDataListener implements ServletContextListener {
     }
 
     private void addData() {
-        addSomeDummyRoles();
+        //addSomeDummyRoles();
         addSomeDummyCustomers();
         addSomeDummyPetService();
         addSomeDummyFeedbacks();
@@ -110,7 +110,7 @@ public class DummyDataListener implements ServletContextListener {
     private void addSomeDummyPetService() {
 
         for (int i = 0; i < 10; i++) {
-            String sql = "INSERT INTO pet_service (service_name, service_description, service_price, service_duration_from, service_duration_to, service_picture) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO pet_service (service_name, service_description, service_price, service_duration_from, service_duration_to, service_picture, sp_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try {
                 PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
                 pstmt.setString(1, randomStr());
@@ -119,6 +119,7 @@ public class DummyDataListener implements ServletContextListener {
                 pstmt.setDate(4, new java.sql.Date(getDateNdaysBefore(randomInt(5, 10)).getTime()));
                 pstmt.setDate(5, new java.sql.Date(new Date().getTime()));
                 pstmt.setString(6, null);
+                pstmt.setInt(7, 11);
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -129,19 +130,19 @@ public class DummyDataListener implements ServletContextListener {
 
     private void addSomeDummyFeedbacks() {
         for (int i = 0; i < 10; i++) {
-            String sql = "INSERT INTO feedback (ranking, contacting_phone_number, feedback_messages, account_id, feedback_date, consideration_date, " +
-                    "feedback_status, checked_description, checker_account_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO feedback (" +
+                    "request_id, ranking, contacting_phone_number, feedback_messages, feedback_date, " +
+                    "consideration_date, feedback_status, checked_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
                 pstmt.setInt(1, randomInt(1,10));
-                pstmt.setString(2, "090626522" + randomInt(10, 99));
-                pstmt.setString(3, randomStr());
-                pstmt.setInt(4, randomInt(1,10));
+                pstmt.setInt(2, randomInt(1,10));
+                pstmt.setString(3, "090626522" + randomInt(10, 99));
+                pstmt.setString(4, randomStr());
                 pstmt.setDate(5, new java.sql.Date(getDateNdaysBefore(randomInt(10, 25)).getTime()));
                 pstmt.setDate(6, null);
                 pstmt.setInt(7, (short)1);
                 pstmt.setString(8, null);
-                pstmt.setNull(9, java.sql.Types.INTEGER);
                 pstmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -151,7 +152,7 @@ public class DummyDataListener implements ServletContextListener {
 
     private void addSomeDummyServiceRequest() {
         for (int i = 0; i < 10; i++) {
-            String sql = "INSERT INTO service_request (start_servicing, end_servicing, request_status, service_id, account_id) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO service_request (start_servicing, end_servicing, request_status, service_id, account_id, sp_id) VALUES (?, ?, ?, ?, ?, ?)";
             try {
                 PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
 
@@ -160,6 +161,7 @@ public class DummyDataListener implements ServletContextListener {
                 pstmt.setInt(3, 1);
                 pstmt.setInt(4, randomInt(1, 10));
                 pstmt.setInt(5, randomInt(1, 10));
+                pstmt.setInt(6, randomInt(1, 10));
                 pstmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();

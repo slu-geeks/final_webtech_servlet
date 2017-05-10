@@ -13,8 +13,9 @@ public class PetService {
     private Date servicingDurationFrom;
     private Date serviceDurationTo;
     private byte[] servicePicture;
+    private Integer sp_id;
 
-    public PetService(Integer serviceId, String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture) {
+    public PetService(Integer serviceId, String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture, Integer sp_id) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
@@ -22,15 +23,17 @@ public class PetService {
         this.servicingDurationFrom = servicingDurationFrom;
         this.serviceDurationTo = serviceDurationTo;
         this.servicePicture = servicePicture;
+        this.sp_id = sp_id;
     }
 
-    public PetService(String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture) {
+    public PetService(String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture, Integer sp_id) {
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
         this.servicePrice = servicePrice;
         this.servicingDurationFrom = servicingDurationFrom;
         this.serviceDurationTo = serviceDurationTo;
         this.servicePicture = servicePicture;
+        this.sp_id = sp_id;
     }
 
     public Integer getServiceId() {
@@ -87,5 +90,13 @@ public class PetService {
 
     public void setServicePicture(byte[] servicePicture) {
         this.servicePicture = servicePicture;
+    }
+
+    public Integer getSp_id() {
+        return sp_id;
+    }
+
+    public void setSp_id(Integer sp_id) {
+        this.sp_id = sp_id;
     }
 }
