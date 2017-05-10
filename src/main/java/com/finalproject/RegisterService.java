@@ -18,14 +18,14 @@ import java.util.List;
  * Created by mehdi on 4/19/17.
  */
 
-@WebServlet("/request-service")
-public class RequestService extends HttpServlet {
+@WebServlet("/add-service")
+public class RegisterService extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<PetService> petServices = PetServiceRepository.fetchPetServiceList();
         req.setAttribute("petServices", petServices);
-        RequestDispatcher rd = req.getRequestDispatcher("services.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("register-services.jsp");
         rd.forward(req, resp);
     }
 
@@ -37,7 +37,7 @@ public class RequestService extends HttpServlet {
         boolean isRequestedRegisered = ServiceRequestRepository.insertRequest(serviceId, user.getAccountId());
         req.setAttribute("isRequestRegistered", isRequestedRegisered);
 
-        RequestDispatcher rd = req.getRequestDispatcher("services.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("register-services.jsp");
         rd.forward(req, resp);
 
 

@@ -1,8 +1,5 @@
 package com.finalproject;
 
-import com.finalproject.db.DatabaseConnectivity;
-import com.finalproject.db.PetServiceRepository;
-import com.finalproject.model.PetService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Mehdi on 4/19/17.

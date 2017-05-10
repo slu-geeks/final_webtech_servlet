@@ -29,7 +29,7 @@
 
 </c:if>
 
-<form method="post" action="request-service">
+<form method="post" action="register-service">
 
     <c:forEach items="${petServices}" var="service" varStatus="i">
         <p>Service${i.index + 1}: (${service.serviceDescription}) <input type="radio" name="requestService"

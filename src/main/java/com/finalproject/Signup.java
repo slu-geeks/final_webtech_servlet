@@ -1,10 +1,8 @@
 package com.finalproject;
 
-import com.finalproject.db.DatabaseConnectivity;
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.model.UserAccount;
 import com.finalproject.util.ValidatorUtil;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +16,6 @@ import javax.servlet.http.Part;
 import javax.validation.ConstraintViolation;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
