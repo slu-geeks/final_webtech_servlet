@@ -92,7 +92,9 @@ public class Signup extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
             rd.forward(req, resp);
         }else{
-            resp.sendRedirect("login");
+            req.setAttribute("registerSuccess", true);
+            RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
+            rd.forward(req, resp);
         }
 
 
