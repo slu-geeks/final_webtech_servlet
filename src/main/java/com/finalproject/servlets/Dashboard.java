@@ -1,7 +1,7 @@
 package com.finalproject.servlets;
 
 import com.finalproject.db.PetServiceRepository;
-import com.finalproject.model.ProviderService;
+import com.finalproject.beans.ProviderService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

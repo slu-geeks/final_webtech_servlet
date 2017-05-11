@@ -1,9 +1,9 @@
 package com.finalproject.db;
 
 import com.finalproject.exceptions.UserPasswordException;
-import com.finalproject.model.PetService;
-import com.finalproject.model.ProviderService;
-import com.finalproject.model.UserAccount;
+import com.finalproject.beans.PetService;
+import com.finalproject.beans.ProviderService;
+import com.finalproject.beans.UserAccount;
 
 import java.sql.Connection;
 import java.sql.Date;

@@ -2,7 +2,7 @@ package com.finalproject.db;
 
 import com.finalproject.exceptions.NoRoleException;
 import com.finalproject.exceptions.UserPasswordException;
-import com.finalproject.model.UserAccount;
+import com.finalproject.beans.UserAccount;
 
 import java.sql.*;
 

@@ -1,15 +1,25 @@
-package com.finalproject.model;
+package com.finalproject.beans;
 
 /**
  * Created by mehdi on 5/11/17.
  */
-public class ProviderService {
-    private UserAccount serviceProvider;
+public class RequestServiceProvider {
+    private Request request;
     private PetService petService;
+    private UserAccount serviceProvider;
 
-    public ProviderService(UserAccount serviceProvider, PetService petService) {
+    public RequestServiceProvider(Request request, PetService petService, UserAccount serviceProvider) {
+        this.request = request;
         this.petService = petService;
         this.serviceProvider = serviceProvider;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
     }
 
     public PetService getPetService() {

@@ -2,7 +2,7 @@ package com.finalproject.listener;
 
 import com.finalproject.db.DatabaseConnectivity;
 import com.finalproject.db.UserAccountRepository;
-import com.finalproject.model.UserAccount;
+import com.finalproject.beans.UserAccount;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

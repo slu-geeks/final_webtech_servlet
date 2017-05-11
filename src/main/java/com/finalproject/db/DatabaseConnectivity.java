@@ -11,7 +11,7 @@ public class DatabaseConnectivity {
 
     private static volatile Connection sqlConnection;
     public static final String DB_USERNAME = "root";
-    public static final String DB_PASSWORD = "";
+    public static final String DB_PASSWORD = "mysqlmysql";
     public static final String DB_NAME = "webtek-final";
     public static final String DB_HOST = "localhost";
     public static final String DB_PORT = "3306";

@@ -1,10 +1,9 @@
 package com.finalproject.servlets;
 
 import com.finalproject.db.PetServiceRepository;
-import com.finalproject.db.ServiceRequestRepository;
-import com.finalproject.model.PetService;
-import com.finalproject.model.ProviderService;
-import com.finalproject.model.UserAccount;
+import com.finalproject.db.RequestRepository;
+import com.finalproject.beans.ProviderService;
+import com.finalproject.beans.UserAccount;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +34,7 @@ public class Services extends HttpServlet {
         Integer serviceId = Integer.parseInt(req.getParameter("requestService"));
         UserAccount user = (UserAccount) req.getSession().getAttribute("activeUser");
 
-        boolean isRequestedRegisered = ServiceRequestRepository.insertRequest(serviceId, user.getAccountId());
+        boolean isRequestedRegisered = RequestRepository.insertRequest(serviceId, user.getAccountId());
         req.setAttribute("isRequestRegistered", isRequestedRegisered);
 
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/register-services.jsp");

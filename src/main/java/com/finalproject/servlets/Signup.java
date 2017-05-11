@@ -1,7 +1,7 @@
 package com.finalproject.servlets;
 
 import com.finalproject.db.UserAccountRepository;
-import com.finalproject.model.UserAccount;
+import com.finalproject.beans.UserAccount;
 import com.finalproject.util.ValidatorUtil;
 import org.apache.commons.io.IOUtils;
 

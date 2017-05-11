@@ -1,4 +1,4 @@
-package com.finalproject.model;
+package com.finalproject.beans;
 
 /**
  * Created by mehdi on 4/24/17.
