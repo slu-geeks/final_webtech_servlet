@@ -9,13 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 
+
 <html lang="en">
 
     <head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Welcome to SLU-Geeks Pet Services</title>
 
         <!-- CSS -->
@@ -28,6 +27,13 @@
     </head>
 
     <body>
+
+        <c:if test="${not empty errors}">
+            <c:forEach items="${errors}" var="error">
+                <p style="color: red;">${error}</p>
+            </c:forEach>
+        </c:if>
+
         <div class="top-content">
 
             <div class="inner-bg">
@@ -57,19 +63,14 @@
                                         <i class="fa fa-key"></i>
                                     </div>
                                 </div>
-                                <c:if test="${not empty errors}">
-                                    <c:forEach items="${errors}" var="error">
-                                        <p style="color: red;">${error}</p>
-                                    </c:forEach>
-                                </c:if>
                                 <div class="form-bottom">
                                     <form method="post" action="/login" role="form" class="login-form">
                                         <div class="form-group">
-                                            <label class="sr-only" for="username">Username</label>
+                                            <label class="sr-only" for="form-username">Username</label>
                                             <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username">
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="password">Password</label>
+                                            <label class="sr-only" for="form-password">Password</label>
                                             <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
                                         </div>
                                         <input type="submit" value="Log in"/>
