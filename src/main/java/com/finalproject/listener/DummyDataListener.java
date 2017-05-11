@@ -21,7 +21,7 @@ public class DummyDataListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce) {
         //trancateAllTables();
-        addData();
+        //addData();
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

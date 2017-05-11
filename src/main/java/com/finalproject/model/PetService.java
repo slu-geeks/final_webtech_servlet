@@ -1,7 +1,5 @@
 package com.finalproject.model;
 
-import java.util.Date;
-
 /**
  * Created by mehdi on 4/24/17.
  */
@@ -10,30 +8,27 @@ public class PetService {
     private String serviceName;
     private String serviceDescription;
     private Integer servicePrice;
-    private Date servicingDurationFrom;
-    private Date serviceDurationTo;
     private byte[] servicePicture;
-    private Integer sp_id;
+    private Integer serviceHours;
+    private Integer ServiceProviderId;
 
-    public PetService(Integer serviceId, String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture, Integer sp_id) {
+    public PetService(Integer serviceId, String serviceName, String serviceDescription, Integer servicePrice, byte[] servicePicture, Integer serviceHours, Integer ServiceProviderId) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
         this.servicePrice = servicePrice;
-        this.servicingDurationFrom = servicingDurationFrom;
-        this.serviceDurationTo = serviceDurationTo;
         this.servicePicture = servicePicture;
-        this.sp_id = sp_id;
+        this.serviceHours = serviceHours;
+        this.ServiceProviderId = ServiceProviderId;
     }
 
-    public PetService(String serviceName, String serviceDescription, Integer servicePrice, Date servicingDurationFrom, Date serviceDurationTo, byte[] servicePicture, Integer sp_id) {
+    public PetService(String serviceName, String serviceDescription, Integer servicePrice, byte[] servicePicture, Integer serviceHours, Integer ServiceProviderId) {
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
         this.servicePrice = servicePrice;
-        this.servicingDurationFrom = servicingDurationFrom;
-        this.serviceDurationTo = serviceDurationTo;
         this.servicePicture = servicePicture;
-        this.sp_id = sp_id;
+        this.serviceHours = serviceHours;
+        this.ServiceProviderId = ServiceProviderId;
     }
 
     public Integer getServiceId() {
@@ -68,22 +63,6 @@ public class PetService {
         this.servicePrice = servicePrice;
     }
 
-    public Date getServicingDurationFrom() {
-        return servicingDurationFrom;
-    }
-
-    public void setServicingDurationFrom(Date servicingDurationFrom) {
-        this.servicingDurationFrom = servicingDurationFrom;
-    }
-
-    public Date getServiceDurationTo() {
-        return serviceDurationTo;
-    }
-
-    public void setServiceDurationTo(Date serviceDurationTo) {
-        this.serviceDurationTo = serviceDurationTo;
-    }
-
     public byte[] getServicePicture() {
         return servicePicture;
     }
@@ -92,11 +71,19 @@ public class PetService {
         this.servicePicture = servicePicture;
     }
 
-    public Integer getSp_id() {
-        return sp_id;
+    public Integer getServiceHours() {
+        return serviceHours;
     }
 
-    public void setSp_id(Integer sp_id) {
-        this.sp_id = sp_id;
+    public void setServiceHours(Integer serviceHours) {
+        this.serviceHours = serviceHours;
+    }
+
+    public Integer getServiceProviderId() {
+        return ServiceProviderId;
+    }
+
+    public void setServiceProviderId(Integer serviceProviderId) {
+        this.ServiceProviderId = serviceProviderId;
     }
 }

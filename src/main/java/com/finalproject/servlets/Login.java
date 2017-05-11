@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.servlets;
 
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.exceptions.NoRoleException;
@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
         rd.forward(req, resp);
     }
 
@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 
     private void doDispatch(List<String> errors, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("errors", errors);
-        RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
         rd.forward(req, resp);
         return;
     }

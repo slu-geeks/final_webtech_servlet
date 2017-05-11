@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.servlets;
 
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.model.UserAccount;
@@ -33,7 +33,7 @@ import java.util.*;
 @MultipartConfig
 public class Signup extends HttpServlet {
 
-    private static final String SIGN_UP_PAGE = "signup.jsp";
+    private static final String SIGN_UP_PAGE = "./WEB-INF/pages/signup.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -86,11 +86,11 @@ public class Signup extends HttpServlet {
         isInserted = UserAccountRepository.addUserAccount(userAccount);
         if (!isInserted) {
             req.setAttribute("errors", Arrays.asList("this username/email already exists"));
-            RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/signup.jsp");
             rd.forward(req, resp);
         }else{
             req.setAttribute("registerSuccess", true);
-            RequestDispatcher rd = req.getRequestDispatcher("signup.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/signup.jsp");
             rd.forward(req, resp);
         }
 

@@ -1,4 +1,4 @@
-package com.finalproject;
+package com.finalproject.servlets;
 
 
 import javax.servlet.RequestDispatcher;
@@ -13,12 +13,12 @@ import java.io.IOException;
  * Created by Mehdi on 4/19/17.
  */
 
-@WebServlet("/feedback")
-public class Feedback extends HttpServlet {
+@WebServlet(name="give-feedback", urlPatterns = "/give-feedback")
+public class GiveFeedback extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("feedback.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/feedback.jsp");
         rd.forward(req, resp);
     }
 

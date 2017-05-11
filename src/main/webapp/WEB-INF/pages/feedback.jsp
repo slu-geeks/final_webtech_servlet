@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
 <a href="">available services</a>@nbsp;
@@ -39,7 +40,6 @@
 
         <input type="number" min="0" max="10" name="feedback_ranking"/>
         <input type="text" name="feedback_message"/>
-
         <input type="submit" value="submit"/>
 
     </form>

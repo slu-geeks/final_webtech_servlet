@@ -1,8 +1,9 @@
-package com.finalproject;
+package com.finalproject.servlets;
 
 import com.finalproject.db.PetServiceRepository;
 import com.finalproject.db.ServiceRequestRepository;
 import com.finalproject.model.PetService;
+import com.finalproject.model.ProviderService;
 import com.finalproject.model.UserAccount;
 
 import javax.servlet.RequestDispatcher;
@@ -18,14 +19,14 @@ import java.util.List;
  * Created by mehdi on 4/19/17.
  */
 
-@WebServlet("/add-service")
-public class RegisterService extends HttpServlet {
+@WebServlet(name="services", urlPatterns = "/services")
+public class Services extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<PetService> petServices = PetServiceRepository.fetchPetServiceList();
+        List<ProviderService> petServices = PetServiceRepository.fetchPetServiceList();
         req.setAttribute("petServices", petServices);
-        RequestDispatcher rd = req.getRequestDispatcher("register-services.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/register-services.jsp");
         rd.forward(req, resp);
     }
 
@@ -37,7 +38,7 @@ public class RegisterService extends HttpServlet {
         boolean isRequestedRegisered = ServiceRequestRepository.insertRequest(serviceId, user.getAccountId());
         req.setAttribute("isRequestRegistered", isRequestedRegisered);
 
-        RequestDispatcher rd = req.getRequestDispatcher("register-services.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/register-services.jsp");
         rd.forward(req, resp);
 
 
