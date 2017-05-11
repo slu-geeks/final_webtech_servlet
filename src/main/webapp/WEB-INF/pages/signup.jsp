@@ -32,7 +32,24 @@
     </head>
 
     <body>
+    <header>
+        <div>
+            <div class="navbar-inverse navbar-static-top" role="navigation">
+                <div class="nav-header">
+                    <a class="navbar-brand" href="login">Login</a>
+                    <a class="navbar-brand" href="signup">Signup</a>
 
+                </div>
+                <!-- nav-header -->
+
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+                </div>
+                <!-- collapse -->
+            </div>
+        </div>
+        <!-- navbar -->
+    </header>
 
         <div class="top-content">
 
