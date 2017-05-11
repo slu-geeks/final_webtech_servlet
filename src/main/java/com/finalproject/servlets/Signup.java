@@ -89,9 +89,7 @@ public class Signup extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/signup.jsp");
             rd.forward(req, resp);
         }else{
-            req.setAttribute("registerSuccess", true);
-            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/signup.jsp");
-            rd.forward(req, resp);
+           resp.sendRedirect("login");
         }
 
 
@@ -102,7 +100,7 @@ public class Signup extends HttpServlet {
         if (dateStr == null || dateStr.isEmpty()) {
             return null;
         }
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
         Date date = null;
         try {
             date = format.parse(dateStr);
