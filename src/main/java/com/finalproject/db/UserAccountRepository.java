@@ -67,9 +67,6 @@ public class UserAccountRepository {
 
             }
 
-            if(roleId != 1 && roleId != -1){
-                throw new NoRoleException("only customer are allowed to login using this module.");
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
