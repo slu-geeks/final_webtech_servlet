@@ -53,9 +53,9 @@
 			      <select id="selectRequest" name="feedback">   
 			         <option selected="selected" value="Not checked">Not Checked</option>
 			         <option value="requestId1">Pet Sitting Date: 2017-1-11</option>  
-			         <option value="requestId2">Pet Sitting Date: 2017-1-12</option>
-                     <option value="requestId3">Pet Sitting Date: 2017-1-15</option>
-                     <option value="requestId4">Pet Sitting Date: 2017-1-16</option>
+			         <option value="requestId2">Dental Date: 2017-1-12</option>
+                                 <option value="requestId3">Pet Grooming Date: 2017-1-15</option>
+                                 <option value="requestId4">Pet Checkup Date: 2017-1-16</option>
 			      </select>
 			</div>
             <!--Ranking-->   
