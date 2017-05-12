@@ -49,13 +49,13 @@
 		   <form method="post" action="/feedback">
                <!--selectRequest-->
                <div>		          
-		      <span>Select Request: </span>
+		      <span>Select Request: *</span>
 			      <select id="selectRequest" name="feedback">   
 			         <option selected="selected" value="Not checked">Not Checked</option>
 			         <option value="requestId1">Pet Sitting Date: 2017-1-11</option>  
 			         <option value="requestId2">Dental Date: 2017-1-12</option>
                                  <option value="requestId3">Pet Grooming Date: 2017-1-15</option>
-                                 <option value="requestId4">Pet Checkup Date: 2017-1-16</option>
+                                 <option value="requestId4">Pet Checkup Date: 2017-1-17</option>
 			      </select>
 			</div>
             <!--Ranking-->   
@@ -65,7 +65,7 @@
 			</div>
             <!--Message-->   
 			<div>		          
-		      	<span class="required">Message: *</span> 
+		      	<span class="required">Feedback Message: *</span> 
                   <textarea type="text" id="message" name="feedback_message" placeholder="Please write your message here." tabindex="5" required="required"></textarea>
 			</div>
             <!--Submit-->   
