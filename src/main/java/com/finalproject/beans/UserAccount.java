@@ -39,7 +39,7 @@ public class UserAccount {
     private String lastName;
 
 
-    private String middleIntitial;
+    private String middleInitial;
 
     private short status;
 
@@ -60,13 +60,13 @@ public class UserAccount {
     @NotNull(message = "user photo is compulsory!")
     private byte[] userPhoto;
 
-    public UserAccount(String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
+    public UserAccount(String username, String password, String address, String firstName, String lastName, String middleInitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
         this.username = username;
         this.password = password;
         this.address = address;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleIntitial = middleIntitial;
+        this.middleInitial = middleInitial;
         this.status = status;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
@@ -75,14 +75,14 @@ public class UserAccount {
         this.userPhoto = userPhoto;
     }
 
-    public UserAccount(Integer accountId, String username, String password, String address, String firstName, String lastName, String middleIntitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
+    public UserAccount(Integer accountId, String username, String password, String address, String firstName, String lastName, String middleInitial, short status, String emailAddress, Date dateOfBirth, Integer roleId, String phoneNumber, byte[] userPhoto) {
         this.accountId = accountId;
         this.username = username;
         this.password = password;
         this.address = address;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleIntitial = middleIntitial;
+        this.middleInitial = middleInitial;
         this.status = status;
         this.emailAddress = emailAddress;
         this.dateOfBirth = dateOfBirth;
@@ -140,11 +140,11 @@ public class UserAccount {
     }
 
     public String getMiddleName() {
-        return middleIntitial;
+        return middleInitial;
     }
 
-    public void setMiddleIntitial(String middleIntitial) {
-        this.middleIntitial = middleIntitial;
+    public void setMiddleInitial(String middleInitial) {
+        this.middleInitial = middleInitial;
     }
 
     public short getStatus() {
@@ -193,5 +193,9 @@ public class UserAccount {
 
     public void setUserPhoto(byte[] userPhoto) {
         this.userPhoto = userPhoto;
+    }
+
+    public String getMiddleInitial() {
+        return middleInitial;
     }
 }

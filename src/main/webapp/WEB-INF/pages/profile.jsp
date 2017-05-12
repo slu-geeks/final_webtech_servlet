@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <html>
 <head>
     <title>Title</title>
@@ -65,40 +67,41 @@
             </div>
             <h3>Personal info</h3>
 
-            <form class="form-horizontal" role="form">
+            <%--<c:set var="activeUser" value="activeUser" scope="session" />--%>
+            <form action="profile" method="post" class="form-horizontal" role="form">
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Home address</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value=$>
+                        <input name="address" class="form-control" type="text" value="${activeUser.address}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="firstName" class="form-control" type="text" value="${activeUser.firstName}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Last name</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="lastName" class="form-control" type="text" value="${activeUser.lastName}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Middle Initial</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="middleInitial" class="form-control" type="text" value="${activeUser.middleInitial}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Email address</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="as">
+                        <input name="emailAddress" class="form-control" type="text" value="${activeUser.emailAddress}">
                     </div>
                 </div>
 
@@ -106,38 +109,38 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Phone number</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="phoneNumber" class="form-control" type="text" value="${activeUser.phoneNumber}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Date of Birth</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="dateOfBirth" class="form-control" type="text" value="${activeUser.dateOfBirth}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Username</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="username" class="form-control" type="text" value="${activeUser.username}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Password</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="Password" class="form-control" type="text" value="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Confirm Password</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="">
+                        <input name="rePassword" class="form-control" type="text" value="">
                     </div>
                 </div>
-            </form>
-            <input type="button" class="btn btn-primary" value="Update">
+            <input type="submit" class="btn btn-primary" value="Update">
             <span></span>
             <input type="reset" class="btn btn-default" value="Cancel">
+            </form>
         </div>
     </div>
 </div>
