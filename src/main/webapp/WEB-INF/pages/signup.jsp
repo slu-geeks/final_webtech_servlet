@@ -96,12 +96,12 @@
                                             <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password">
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="firstname">First name</label>
-                                            <input type="text" name="firstname" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+                                            <label class="sr-only" for="firstName">First name</label>
+                                            <input type="text" name="firstName" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="lastname">Last name</label>
-                                            <input type="text" name="lastname" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+                                            <label class="sr-only" for="lastName">Last name</label>
+                                            <input type="text" name="lastName" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
                                         </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="middleInitial">Middle Initial</label>
