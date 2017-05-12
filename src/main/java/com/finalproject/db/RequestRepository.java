@@ -14,18 +14,19 @@ import java.util.*;
  */
 public class RequestRepository {
 
-    public static boolean insertRequest(Integer serviceId, Integer accountId){
+    public static boolean insertRequest(Integer serviceId, Integer accountId, Integer spId) {
 
         try {
             String sql =
                     "INSERT INTO service_request (start_servicing, end_servicing, request_status," +
-                            "service_id, account_id) VALUES(?, ?, ?, ?, ?);";
+                            "service_id, account_id, sp_id) VALUES(?, ?, ?, ?, ?, ?);";
             PreparedStatement pstmt = DatabaseConnectivity.getConnection().prepareStatement(sql);
             pstmt.setNull(1, Types.DATE);
-            pstmt.setNull(2,Types.DATE);
+            pstmt.setNull(2, Types.DATE);
             pstmt.setInt(3, 1);
-            pstmt.setInt(4,serviceId);
-            pstmt.setInt(5,accountId);
+            pstmt.setInt(4, serviceId);
+            pstmt.setInt(5, accountId);
+            pstmt.setInt(6, spId);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,15 +35,15 @@ public class RequestRepository {
         return true;
     }
 
-    public static List<RequestServiceProvider> fetchAllUserRequest(Integer userAccountID){
+    public static List<RequestServiceProvider> fetchAllUserRequest(Integer userAccountID) {
         String sql = "SELECT distinct * FROM service_request " +
                 "JOIN pet_service using(service_id) " +
                 "JOIN user_account on service_request.sp_id = user_account.account_id " +
-                " WHERE service_request.account_id= ? ORDER BY end_servicing;";
+                " WHERE service_request.account_id= ? ORDER BY request_status;";
 
         //request
         Integer requestId, serviceId = 0, accountId = 0, serviceProviderId = 0;
-        java.util.Date startServicing, endServicing;
+        java.util.Date requestDate, startServicing, endServicing;
         Short requestStatus;
 
         //for pet service
@@ -52,7 +53,7 @@ public class RequestRepository {
 
         //for service provider
         int accountSPId = -1, roleId = -1;
-        String username = "", address ="", firstName="", lastName="", middleName="", emailAddress="", phoneNumber="";
+        String username = "", address = "", firstName = "", lastName = "", middleName = "", emailAddress = "", phoneNumber = "";
         short status = -1;
         Date birthday = null;
         byte[] userPhoto = null;
@@ -70,6 +71,7 @@ public class RequestRepository {
             while (result.next()) {
                 //request
                 requestId = result.getInt("request_id");
+                requestDate = result.getDate("request_date");
                 startServicing = result.getDate("start_servicing");
                 endServicing = result.getDate("end_servicing");
                 requestStatus = result.getShort("request_status");
@@ -77,7 +79,7 @@ public class RequestRepository {
 //                accountId = result.getInt("service_request.account_id");
 //                serviceProviderId = result.getInt("service_request.sp_id");
 
-                Request request = new Request(requestId, startServicing, endServicing, requestStatus, serviceId,accountId, serviceProviderId);
+                Request request = new Request(requestId,requestDate, startServicing, endServicing, requestStatus, serviceId, accountId, serviceProviderId);
 
                 //pet service
 //                petServiceId = result.getInt("pet_service.service_id");
@@ -108,10 +110,10 @@ public class RequestRepository {
 
                 UserAccount serviceProvider = new UserAccount(
                         accountSPId, username, "",
-                        address, firstName, lastName,middleName, status, emailAddress,
+                        address, firstName, lastName, middleName, status, emailAddress,
                         birthday, roleId, phoneNumber, userPhoto);
 
-                requestList.add(new RequestServiceProvider(request,petService, serviceProvider));
+                requestList.add(new RequestServiceProvider(request, petService, serviceProvider));
 
             }
         } catch (Exception e) {

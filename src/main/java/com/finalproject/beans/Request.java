@@ -8,6 +8,7 @@ import java.util.Date;
 public class Request {
 
     private Integer requestId;
+    private Date requestDate;
     private Date startServicing;
     private Date endServicing;
     private Short requestStatus;
@@ -15,8 +16,9 @@ public class Request {
     private Integer accountId;
     private Integer serviceProviderId;
 
-    public Request(Integer requestId, Date startServicing, Date endServicing, Short requestStatus, Integer serviceId, Integer accountId, Integer serviceProviderId) {
+    public Request(Integer requestId, Date requestDate, Date startServicing, Date endServicing, Short requestStatus, Integer serviceId, Integer accountId, Integer serviceProviderId) {
         this.requestId = requestId;
+        this.requestDate = requestDate;
         this.startServicing = startServicing;
         this.endServicing = endServicing;
         this.requestStatus = requestStatus;
@@ -25,7 +27,8 @@ public class Request {
         this.serviceProviderId = serviceProviderId;
     }
 
-    public Request(Date startServicing, Date endServicing, Short requestStatus, Integer serviceId, Integer accountId, Integer serviceProviderId) {
+    public Request(Date requestDate,Date startServicing, Date endServicing, Short requestStatus, Integer serviceId, Integer accountId, Integer serviceProviderId) {
+        this.requestDate = requestDate;
         this.startServicing = startServicing;
         this.endServicing = endServicing;
         this.requestStatus = requestStatus;
@@ -40,6 +43,14 @@ public class Request {
 
     public void setRequestId(Integer requestId) {
         this.requestId = requestId;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
     public Date getStartServicing() {

@@ -21,6 +21,7 @@ public class Dashboard extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //show all available services to the user
         List<ProviderService> serviceList = PetServiceRepository.fetchPetServiceList();
         req.setAttribute("serviceAvailable", serviceList);
 

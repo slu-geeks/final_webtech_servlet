@@ -12,12 +12,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Service Request</title>
-    <link rel="stylesheet" href="../../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../../assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../assets/css/build.css"/>
 </head>
 <body>
-    <header>
+<header>
     <div>
         <div class="navbar-inverse navbar-static-top" role="navigation">
             <div class="nav-header">
@@ -42,7 +42,7 @@
 </header>
 <div class="container">
     <h2>Service Form</h2>
-    <form role="form">
+    <%--<form role="form">
         <div class="row">
             <div class="col-md-4">
                 <fieldset>
@@ -114,36 +114,68 @@
                         <label for="checkbox3">
                             Pedicure
                         </label>
-                    </div>               
+                    </div>
                 </fieldset>
             </div>
         </div>
     </form>
-        <c:if test="${not empty isRequestRegistered}">
+    --%>
     <c:choose>
-        <c:when test="${isRequestRegistered}">
-            <p style="color:green;">your request registered successfully ~</p>
+        <c:when test="${not empty isRequestRegistered}">
+            <c:choose>
+                <c:when test="${isRequestRegistered}">
+                    <div>
+                    <h2 style="color:green;">your request registered successfully ~</h2>
+                        <h3><a href="request-log" >Go back to requested Log page</a></h3>
+                    </div>
+                </c:when>
+
+                <c:otherwise>
+                    <div style="color: red;">
+                    <h2>your request didn't registered because of some problems!</h2>
+                    <h3>please contact us for further processing!</h3>
+                    <a href="dashboard" >Go back to Dashboard</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </c:when>
         <c:otherwise>
-            <p style="color: red;">
-            <p>your request didn't registered because of some problems!</p>
-            <p>please contact us for further processing!</p>
-            </p>
+            <div>
+                <form method="post" action="request-service">
+                    <table class="table">
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Estimated Service Hour</th>
+                            <th>Provider Name</th>
+                            <th>About Provider</th>
+                            <th>checking The Service</th>
+                        </tr>
+
+
+                        <c:forEach items="${serviceAvailable}" var="service">
+
+                            <tr>
+                                <td>${service.petService.servicePicture}</td>
+                                <td>${service.petService.serviceName}</td>
+                                <td>${service.petService.serviceDescription}</td>
+                                <td>${service.petService.servicePrice}</td>
+                                <td>${service.petService.serviceHours}</td>
+                                <td>${service.serviceProvider.firstName}, ${service.serviceProvider.lastName}</td>
+                                <td><a href="" onclick="">More Information</a></td>
+                                <td><input type="checkbox" name="service"
+                                           value="${service.petService.serviceId}:${service.serviceProvider.accountId}"></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    <input type="submit" value="request"/>
+                </form>
+            </div>
         </c:otherwise>
     </c:choose>
 
-</c:if>
-    
-<form method="post" action="register-service">
-
-    <c:forEach items="${petServices}" var="service" varStatus="i">
-        <p>Service${i.index + 1}: (${service.serviceDescription}) <input type="radio" name="requestService"
-                                                                         value="${service.serviceId}"/>
-        </p>
-    </c:forEach>
-    <input type="submit" value="Request The Service" class="btn"/>
-    
-</form>
- </div>   
+</div>
 </body>
 </html>
