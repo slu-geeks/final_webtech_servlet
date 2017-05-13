@@ -63,11 +63,11 @@
 
                 <c:forEach items="${feedBackLog}" var="feedBack" >
                     <tr>
-                        <td>${service.petService.serviceDescription}</td>
+                        <td>${feedBack.feedbackId.feedback}</td>
                         <td>${service.request.requestDate}</td>
-                        <td>${service.request.feedback_message}</td>
+                        <td>${feedBack.feedbackMessage.feedback_message}</td>
                         <td>${service.serviceProvider.firstName}, ${service.serviceProvider.lastName}</td>
-                        <td>${service.request.feedback_ranking}</td>
+                        <td>${feedBack.feedbackRanking.feedback_ranking}</td>
                     </tr>
                 </c:forEach>
             </table>
