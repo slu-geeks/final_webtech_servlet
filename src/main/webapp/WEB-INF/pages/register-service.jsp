@@ -9,15 +9,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Service Request</title>
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="../../assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/css/build.css"/>
+<head>
+    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Request a Service</title>
+        
+<link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="assets/css/build.css"/>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css"/>   
 </head>
 <body>
-<header>
+<header class="lv-bg">
     <div>
         <div class="navbar-inverse navbar-static-top" role="navigation">
             <div class="nav-header">
@@ -42,84 +46,6 @@
 </header>
 <div class="container">
     <h2>Service Form</h2>
-    <%--<form role="form">
-        <div class="row">
-            <div class="col-md-4">
-                <fieldset>
-                    <legend>
-                        Pet Health Care
-                    </legend>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Check-up/Consultation
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Dental
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Vaccination
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Deworming
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Blood Testing
-                        </label>
-                    </div>
-                    <legend>
-                        Training
-                    </legend>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Swimming
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox1">
-                            Tricks
-                        </label>
-                    </div>
-                    <legend>
-                        Grooming
-                    </legend>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Massage
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Haircut
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-success">
-                        <input id="checkbox3" class="styled" type="checkbox">
-                        <label for="checkbox3">
-                            Pedicure
-                        </label>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-    </form>
-    --%>
     <c:choose>
         <c:when test="${not empty isRequestRegistered}">
             <c:choose>
@@ -140,7 +66,7 @@
             </c:choose>
         </c:when>
         <c:otherwise>
-            <div>
+            <div class="container-fluid inner">
                 <form method="post" action="request-service">
                     <table class="table">
                         <tr>
@@ -157,7 +83,7 @@
 
                         <c:forEach items="${serviceAvailable}" var="service">
 
-                            <tr>
+                            <tr><div class="c"></div>  
                                 <td>${service.petService.servicePicture}</td>
                                 <td>${service.petService.serviceName}</td>
                                 <td>${service.petService.serviceDescription}</td>
