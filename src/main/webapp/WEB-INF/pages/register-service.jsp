@@ -90,9 +90,26 @@
                                 <td>${service.petService.servicePrice}</td>
                                 <td>${service.petService.serviceHours}</td>
                                 <td>${service.serviceProvider.firstName}, ${service.serviceProvider.lastName}</td>
-                                <td><a href="" onclick="">More Information</a></td>
-                                <td><input type="checkbox" name="service"
-                                           value="${service.petService.serviceId}:${service.serviceProvider.accountId}"></td>
+                                
+                                <c:choose>
+                                    <c:when test="${service.serviceProvider.accountId eq 12}">
+                                        <td><a href="sp1">More Information</a></td>
+                                    </c:when>
+
+                                        <c:when test="${service.serviceProvider.accountId eq 13}">
+                                        <td><a href="sp2" onclick="">More Information</a></td>
+                                    </c:when> 
+
+                                        <c:when test="${service.serviceProvider.accountId eq 14}">
+                                        <td><a href="sp3" onclick="">More Information</a></td>
+                                    </c:when> 
+
+                                        <c:when test="${service.serviceProvider.accountId eq 15}">
+                                        <td><a href="sp4" onclick="">More Information</a></td>
+                                    </c:when>   
+                                </c:choose>  
+                                     
+                                <td><input type="checkbox" name="service" value="${service.petService.serviceId}:${service.serviceProvider.accountId}"></td>
                             </tr>
                         </c:forEach>
                     </table>
