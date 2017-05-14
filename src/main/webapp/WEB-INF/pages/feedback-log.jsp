@@ -57,17 +57,27 @@
                     <th>Type of Service</th>
                     <th>Date</th>
                     <th>Comment</th>
-                    <th>Service Provider</th>
                     <th>Ratings</th>
+                    <th>Status</th>
+                    <td>Provider Response</td>
+                    <td>Response Date</td>
                 </tr>
 
-                <c:forEach items="${feedBackLog}" var="feedBack" >
+                <c:forEach items="${requestServiceFeedback}" var="rsf" >
                     <tr>
-                        <td>${feedBack.feedbackId.feedback}</td>
-                        <td>${service.request.requestDate}</td>
-                        <td>${feedBack.feedbackMessage.feedback_message}</td>
-                        <td>${service.serviceProvider.firstName}, ${service.serviceProvider.lastName}</td>
-                        <td>${feedBack.feedbackRanking.feedback_ranking}</td>
+                        <td>${rsf.petService.serviceName}</td>
+                        <td>${rsf.feedback.feedbackDate}</td>
+                        <td>${rsf.feedback.feedbackMessage}</td>
+                        <td>${rsf.feedback.feedbackRanking}</td>
+                        <td>
+
+                        </td>
+                        <td>
+                            ${rsf.feedback.checkedDescription}
+                        </td>
+
+                        <td>${rsf.feedback.considerationDate}</td>
+
                     </tr>
                 </c:forEach>
             </table>

@@ -1,7 +1,9 @@
 package com.finalproject.servlets;
 
+import com.finalproject.beans.RequestServiceFeedback;
 import com.finalproject.beans.RequestServiceProvider;
 import com.finalproject.beans.UserAccount;
+import com.finalproject.db.FeedbackRepository;
 import com.finalproject.db.RequestRepository;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +22,10 @@ public class FeedbackLog extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserAccount activeUser = (UserAccount) req.getSession().getAttribute("activeUser");
-        List<RequestServiceProvider> feedBackLog = RequestRepository.fetchAllUserRequest(activeUser.getAccountId());
-        req.setAttribute("feedBackLog", feedBackLog);
+        List<RequestServiceFeedback> feedbackLog = FeedbackRepository.fetchAllUserRequestWithFeedback(activeUser.getAccountId());
+
+             req.setAttribute("requestServiceFeedback", feedbackLog);
         RequestDispatcher reqDispatcher = req.getRequestDispatcher("WEB-INF/pages/feedback-log.jsp");
         reqDispatcher.forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }

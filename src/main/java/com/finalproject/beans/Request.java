@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class Request {
 
-    private Integer requestId;
+        private Integer requestId;
     private Date requestDate;
     private Date startServicing;
     private Date endServicing;

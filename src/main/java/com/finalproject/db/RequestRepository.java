@@ -38,8 +38,8 @@ public class RequestRepository {
     public static List<RequestServiceProvider> fetchAllUserRequest(Integer userAccountID) {
         String sql = "SELECT distinct * FROM service_request " +
                 "JOIN pet_service using(service_id) " +
-                "JOIN user_account on service_request.sp_id = user_account.account_id " +
-                " WHERE service_request.account_id= ? ORDER BY request_status;";
+                "JOIN user_account USING (account_id) " +
+                "WHERE service_request.account_id= ? ORDER BY request_status;";
 
         //request
         Integer requestId, serviceId = 0, accountId = 0, serviceProviderId = 0;
