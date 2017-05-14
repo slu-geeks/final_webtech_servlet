@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
             return;
         }
 
-        if (user.getAccountId() != 1) {
+        if (user.getRoleId() != 1) {
             ServletContext context = req.getServletContext();
             String fullPath = context.getRealPath("/WEB-INF/" + MODULE_PROP);
             Properties prop = loadServerIps(fullPath);
