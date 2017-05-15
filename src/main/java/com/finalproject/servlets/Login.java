@@ -124,7 +124,8 @@ public class Login extends HttpServlet {
 
         String url = "";
         if (roleId == 2) {
-            url = String.format(urlFormat, prop.getProperty("php"), "login", "usernames", username, "passwords", password);
+            url = String.format(urlFormat, prop.getProperty("php"), "login.php", "username", username, "password", password);
+            url+= "&submit=Submit";
         } else if (roleId == 3) {
             url = String.format(urlFormat, prop.getProperty("nodejs"), "login", "usernames", username, "passwords", password);
         } else {
