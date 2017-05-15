@@ -67,7 +67,30 @@
             </div>
             <h3>Personal info</h3>
 
+
             <%--<c:set var="activeUser" value="activeUser" scope="session" />--%>
+            <c:if test="${not empty passwordDoesntMatch}">
+                <c:choose>
+                    <c:when test="${passwordDoesntMatch == true}">
+                        <h3 style="color:red;">your password must match ~</h3>
+                    </c:when>
+                </c:choose>
+            </c:if>
+
+            <%--<c:set var="activeUser" value="activeUser" scope="session" />--%>
+            <c:if test="${not empty updateSuccessful}">
+                <c:choose>
+                    <c:when test="${updateSuccessful == true}">
+                        <h3 style="color:green;">your profile successfully updated ~</h3>
+                    </c:when>
+
+                    <c:otherwise>
+                        <div style="color: red;">
+                            <h3>something went wront, contact your admin!</h3>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:if>
             <form action="profile" method="post" class="form-horizontal" role="form">
 
                 <div class="form-group">
