@@ -20,8 +20,7 @@ public class sp4 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean isSessionAvailable = LogoutUtils.checkSession(req.getSession());
         if(!isSessionAvailable){
-            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
-            rd.forward(req, resp);
+            resp.sendRedirect("login");
             return;
         }
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/sp4.jsp");
