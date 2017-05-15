@@ -1,5 +1,7 @@
 package com.finalproject.servlets;
 
+import com.finalproject.util.LogoutUtils;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +18,13 @@ public class sp1 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean isSessionAvailable = LogoutUtils.checkSession(req.getSession());
+        if(!isSessionAvailable){
+            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
+            rd.forward(req, resp);
+            return;
+        }
+
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/sp1.jsp");
         rd.forward(req, resp);
     }

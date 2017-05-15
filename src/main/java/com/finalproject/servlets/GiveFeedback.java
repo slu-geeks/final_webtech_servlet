@@ -6,6 +6,7 @@ import com.finalproject.beans.RequestServiceProvider;
 import com.finalproject.beans.UserAccount;
 import com.finalproject.db.FeedbackRepository;
 import com.finalproject.db.RequestRepository;
+import com.finalproject.util.LogoutUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +27,13 @@ public class GiveFeedback extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        boolean isSessionAvailable = LogoutUtils.checkSession(req.getSession());
+        if(!isSessionAvailable){
+            RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
+            rd.forward(req, resp);
+            return;
+        }
+
         UserAccount account = (UserAccount) req.getSession().getAttribute("activeUser");
         List<RequestServiceProvider> requests = RequestRepository.fetchAllUserRequest(account.getAccountId());
         req.setAttribute("allUserRequests", requests);

@@ -4,6 +4,7 @@ import com.finalproject.beans.UserAccount;
 import com.finalproject.db.UserAccountRepository;
 import com.finalproject.exceptions.NoRoleException;
 import com.finalproject.exceptions.UserPasswordException;
+import com.finalproject.util.LogoutUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -31,6 +32,7 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/pages/login.jsp");
         rd.forward(req, resp);
     }
